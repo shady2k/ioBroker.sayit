@@ -1,11 +1,45 @@
 {
-  "name": "iobroker.sayit",
-  "version": "1.9.0",
-  "description": "Text to speech interface for ioBroker.",
+  "_from": "iobroker.sayit",
+  "_id": "iobroker.sayit@1.7.0",
+  "_inBundle": false,
+  "_integrity": "sha512-hRPIfpZTLA4/SC0Vt8qXmSj4Sj/DChIP5MHP+7NM4YbfLiRNjz0g9XKoIh7PLzheaV2kLU58cLUEVqD0uAOD/Q==",
+  "_location": "/iobroker.sayit",
+  "_phantomChildren": {
+    "buffer": "4.9.1",
+    "events": "1.1.1",
+    "ieee754": "1.1.8",
+    "jmespath": "0.15.0",
+    "lodash": "4.17.11",
+    "querystring": "0.2.0",
+    "sax": "1.2.1",
+    "url": "0.10.3"
+  },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "iobroker.sayit",
+    "name": "iobroker.sayit",
+    "escapedName": "iobroker.sayit",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/iobroker.sayit/-/iobroker.sayit-1.7.0.tgz",
+  "_shasum": "2b6a4f08566599465a7c201caeb41eb3c8692e35",
+  "_spec": "iobroker.sayit",
+  "_where": "/",
   "author": {
     "name": "bluefox",
     "email": "dogafox@gmail.com"
   },
+  "bugs": {
+    "url": "https://github.com/ioBroker/ioBroker.sayit/issues"
+  },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "bluefox",
@@ -20,6 +54,19 @@
       "email": "forum@fischer-ka.de"
     }
   ],
+  "dependencies": {
+    "aws-sdk": "~2.253.1",
+    "castv2-client": "^1.2.0",
+    "jsftp": "^2.1.3",
+    "mdns": "^2.4.0"
+  },
+  "deprecated": false,
+  "description": "Text to speech interface for ioBroker.",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "gulp": "^3.9.1",
+    "mocha": "^4.1.0"
+  },
   "homepage": "https://github.com/ioBroker/ioBroker.sayit",
   "keywords": [
     "ioBroker",
@@ -27,33 +74,20 @@
     "TTS",
     "Voice synthesis"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.sayit"
-  },
+  "license": "MIT",
+  "main": "main.js",
+  "name": "iobroker.sayit",
   "optionalDependencies": {
     "castv2-client": "^1.2.0",
-    "mdns": "^2.5.1"
+    "mdns": "^2.4.0"
   },
-  "dependencies": {
-    "jsftp": "^2.1.3",
-    "aws-sdk": "~2.564.0",
-    "@iobroker/adapter-core": "^1.0.3"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ioBroker/ioBroker.sayit.git"
   },
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "axios": "^0.19.0",
-    "mocha": "^6.2.2",
-    "chai": "^4.2.0"
-  },
-  "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.sayit/issues"
-  },
-  "main": "main.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit",
-    "install": "node main.js --install"
+    "install": "node main.js --install",
+    "test": "node node_modules/mocha/bin/mocha --exit"
   },
-  "license": "MIT",
-  "readmeFilename": "README.md"
+  "version": "1.7.0"
 }

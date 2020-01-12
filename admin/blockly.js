@@ -10,8 +10,7 @@ Blockly.Words['sayit_message']       = {'en': 'message',                     'de
 Blockly.Words['sayit_volume']        = {'en': 'volume (optional)',           'de': 'Lautstärke (optional)',              'ru': 'громкость (не обяз.)'};
 Blockly.Words['sayit_tooltip']       = {'en': 'Text to speech',              'de': 'Text zu Sprache',                    'ru': 'Произнести сообщение'};
 Blockly.Words['sayit_help']          = {'en': 'https://github.com/ioBroker/ioBroker.sayit/blob/master/README.md', 'de': 'http://www.iobroker.net/?page_id=178&lang=de', 'ru': 'http://www.iobroker.net/?page_id=4262&lang=ru'};
-Blockly.Words['sayit_configured']    = {'en': 'configured',                  'de': 'Standard',                           'ru': 'настроенный'};
-Blockly.Words['sayit_everyInstance']   = {'en': 'every instance',               'pt': 'todas as instâncias',            'pl': 'wszystkie przypadki',                'nl': 'alle instanties',                'it': 'tutte le istanze',               'es': 'todas las instancias',           'fr': 'toutes les instances',               'de': 'Alle Instanzen',                     'ru': 'На все драйвера'};
+Blockly.Words['sayit_configured']    = {'en': 'configured',                  'de': 'standart',                           'ru': 'настроенный'};
 
 Blockly.Words['sayit_log']           = {'en': 'log level',                   'de': 'Loglevel',                           'ru': 'Протокол'};
 Blockly.Words['sayit_log_none']      = {'en': 'none',                        'de': 'keins',                              'ru': 'нет'};
@@ -29,8 +28,7 @@ var sayitEngines = {
     "it":       {name: "Google - Italiano",        engine: "google",  params: []},
     "es":       {name: "Google - Espaniol",        engine: "google",  params: []},
     "fr":       {name: "Google - Français",        engine: "google",  params: []},
-    "ru_YA":    {name: "Yandex - Русский",         engine: "yandex",  params: ['key', 'voice', 'emotion', 'ill', 'drunk', 'robot'], voice: ['jane', 'zahar'], emotion: ['none', 'good', 'neutral', 'evil', 'mixed']},
-    "ru_YA_CLOUD":   {name: "Yandex Cloud - Русский",   engine: "yandexCloud",  params: ['key', 'folderID', 'voice', 'emotion'], voice: ['alyss', 'oksana', 'jane', 'zahar'], emotion: [ 'good', 'neutral', 'evil']},
+    "ru_YA":    {name: "Yandex - Русский",         engine: "yandex",  params: ['key', 'voice', 'emotion', 'ill', 'drunk', 'robot'], voice: ['jane', 'zahar', 'alyss'], emotion: ['none', 'good', 'neutral', 'evil', 'mixed']},
 
     "en-US":    {name: "PicoTTS - Englisch US",    engine: "PicoTTS", params: []},
     "en-GB":    {name: "PicoTTS - Englisch GB",    engine: "PicoTTS", params: []},
@@ -94,7 +92,6 @@ var sayitEngines = {
     "ru-RU_AP_Female":          {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "ru-RU",      ename: "Tatyana",    ssml: true, name: "AWS Polly - Русский - Татьяна"},
     "ru-RU_AP_Male":            {gender: "Male",   engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "ru-RU",      ename: "Maxim",      ssml: true, name: "AWS Polly - Русский - Максим"},
     "de-DE_AP_Female":          {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "de-DE",      ename: "Marlene",    ssml: true, name: "AWS Polly - Deutsch - Marlene"},
-    "de-DE_AP_Female_Vicky":    {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "de-DE",      ename: "Vicky",      ssml: true, name: "AWS Polly - Deutsch - Vicky"},
     "de-DE_AP_Male":            {gender: "Male",   engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "de-DE",      ename: "Hans",       ssml: true, name: "AWS Polly - Deutsch - Hans"},
     "en-US_AP_Female":          {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "en-US",      ename: "Salli",      ssml: true, name: "AWS Polly - en-US - Female - Salli"},
     "en-US_AP_Male":            {gender: "Male",   engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "en-US",      ename: "Joey",       ssml: true, name: "AWS Polly - en-US - Male - Joey"},
@@ -166,18 +163,13 @@ Blockly.Sendto.blocks['sayit'] =
 
 Blockly.Blocks['sayit'] = {
     init: function() {
-        var options = [[Blockly.Words['sayit_everyInstance'][systemLang], 'all']];
+        var options = [];
         if (typeof main !== 'undefined' && main.instances) {
             for (var i = 0; i < main.instances.length; i++) {
                 var m = main.instances[i].match(/^system.adapter.sayit.(\d+)$/);
                 if (m) {
                     var n = parseInt(m[1], 10);
                     options.push(['sayit.' + n, '.' + n]);
-                }
-            }
-            if (options.length === 0) {
-                for (var u = 0; u <= 4; u++) {
-                    options.push(['sayit.' + u, '.' + u]);
                 }
             }
         } else {
@@ -240,20 +232,6 @@ Blockly.JavaScript['sayit'] = function(block) {
         logText = '';
     }
 
-    if(dropdown_instance == "all") {
-        let output = "";
-        for (var i = 0; i < main.instances.length; i++) {
-            var m = main.instances[i].match(/^system.adapter.sayit.(\d+)$/);
-            if (m) {
-                var k = parseInt(m[1], 10);
-                output = output + 'setState("sayit.' + k + '.tts.text", "' + (dropdown_language ? dropdown_language + ';' : '') + (value_volume !== null && value_volume !== '' ? value_volume + ';' : '') + '" + ' + value_message  + ');\n';
-            }
-        }
-        return output;
-    } else {
-
-
     return 'setState("sayit' + dropdown_instance + '.tts.text", "' + (dropdown_language ? dropdown_language + ';' : '') + (value_volume !== null && value_volume !== '' ? value_volume + ';' : '') + '" + ' + value_message  + ');\n' +
         logText;
-    }
 };

@@ -1,8 +1,9 @@
 ![Logo](admin/sayit.png)
-# ioBroker sayit adapter
-
-![Number of Installations](http://iobroker.live/badges/sayit-installed.svg) ![Number of Installations](http://iobroker.live/badges/sayit-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.sayit.svg)](https://www.npmjs.com/package/iobroker.sayit)
+ioBroker sayit adapter
+=================
+[![NPM version](http://img.shields.io/npm/v/iobroker.sayit.svg)](https://www.npmjs.com/package/iobroker.sayit)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.sayit.svg)](https://www.npmjs.com/package/iobroker.sayit)
+
 [![NPM](https://nodei.co/npm/iobroker.sayit.png?downloads=true)](https://nodei.co/npm/iobroker.sayit/)
 
 
@@ -13,14 +14,19 @@ Actual following outputs are supported:
 
 - *Browser* - the text will be played by browser with opened iobroker.vis page. It is supported almost by every desktop browser and by few mobily Browsers.
 
+
 - *[Home24- MediaPlayer](http://www.home-24.net/index.php?app=media)* - the text will be sent and played to the Android device with Home24 - MediaPlayer installed. For this will be used build in Android text to speech engine. The port cannot be changed and set to 50000.
+
 
 - *Home24 - MediaPlayer and [FTP Server](https://play.google.com/store/apps/details?id=lutey.FTPServer)* - the text will be sent and played on the Android device with Home24 - MediaPlayer installed. For this will be used the Google text to speech engine. Generated mp3 file will be copied over FTP to android device and played with Home24 - MediaPlayer.
     Both apps have to have same home directories. (E.g. root directory of \"sd card\").
 
+
 - *System* - the text will be played by OS, where the ioBroker adapter runs. Following OS are supported: Windows, linux, Mac OSx.
 
+
 - *Windows engine* - the text will be played by windows, where the sayIt adapter runs. For this will be used windows text to speech engine, that should be preconfigured by user. You can check [here](http://windows.microsoft.com/en-us/windows/setting-speech-options#1TC=windows-7) how to setup it.
+
 
 - *Sonos* - play text on sonos device. Be sure the Web Adapter is enabled. It is required to enable SONOS to read the generated mp3 files.
 
@@ -35,25 +41,24 @@ The mp3/wav files can be played to by writing its name into the object. (e.g. "/
 The file must be first loaded.
 
 ### TTS engines
-online:
+online:  
 - Google: English, German, Russian, Italian, Spanish, French
-- Yandex: Russian
-  To use Yandex voices you must request the API key here: [https://tech.yandex.ru/speechkit/cloud/doc/dg/concepts/About-docpage/](https://tech.yandex.ru/speechkit/cloud/doc/dg/concepts/About-docpage/).  [This service will be disabled 1st of Jan 2019 and replaced by Yandex.cloud]
-  To use Yandex.cloud you should register here: [https://cloud.yandex.ru/], install SpeechKIT API in the Cloud and get Auth Token and Folder ID as described in API instructions.
-- Ivona: English, German, Russian, Italian, Spanish, French, Dansk, Welsh, Icelandic, Dutch, Polish, Portuguese, Romanian, Swedish, Turkish
+- Yandex: Russian  
+  To use Yandex voices you must request the API key here: [https://tech.yandex.ru/speechkit/cloud/doc/dg/concepts/About-docpage/](https://tech.yandex.ru/speechkit/cloud/doc/dg/concepts/About-docpage/).  
+- Ivona: English, German, Russian, Italian, Spanish, French, Dansk, Welsh, Icelandic, Dutch, Polish, Portuguese, Romanian, Swedish, Turkish  
         To use Amazon(Ivona) voices you need to get access key and secret key [here](http://www.ivona.com/us/for-business/speech-cloud/).
 - Cloud:
         To use Cloud voices you need configured cloud adapter. (It can be disabled, but must be configured). This service use AWS Polly and it can be used directly.
 - Amazon Web Services Polly:
         To use AWS Polly voices you need to create access key and secret key [here](https://console.aws.amazon.com/iam/home). The Amazon documentation can you find [here](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html).
 
-offline:
-- PicoTTS (linux only): English, German, Italian, Spanish, French
-        For PicoTTS it is necessary to install the following packages: libttspico-utils and lame.
+offline:  
+- PicoTTS (linux only): English, German, Italian, Spanish, French  
+        For PicoTTS it is necessary to install the following packages: libttspico-utils and lame.  
         Installation command: 'sudo apt-get install libttspico-utils lame'
 
 ### Cloud and Amazon Web Services Polly text formatting
-You can format your text with [Speech Synthesis Markup Language](http://docs.aws.amazon.com/polly/latest/dg/ssml.html).
+You can format your text with (Speech Synthesis Markup Language)[http://docs.aws.amazon.com/polly/latest/dg/ssml.html].
 
 Most useful features:
 - ```<break time="3s"/>```- make a pause for x seconds (max 10 seconds).
@@ -100,27 +105,19 @@ To install omxplayer write ```sudo apt-get install omxplayer``` or write ```sudo
 
 **Note:** The default announce selection will be possible only after start of the instance.
 
-### Priorities
-To immediately pronounce the text despite the queued texts you have 2 possibilities:
-- place "!" as a first character in text, so this text will be pronounced immediately after current one.
-- write true into "tts.clearQueue" state and the queue will be cleared. After that you can write a new text into "tts.text", but all queued texts are thrown away.
-
 ### Engines
 Following values for engines are possible:
 
 #### Google
 - **en** - English
 - **de** - Deutsch
-- **pl** - Polski
 - **ru** - Русский
-- **uk** - український
 - **it** - Italiano
 - **es** - Espaniol
 - **fr** - Français
 
 #### Yandex
 - **ru_YA:Yandex** - Русский
-- **ru_YA_CLOUD:Yandex Cloud** - Русский [Yandex.Cloud API generates files in OGG format. To play ogg files on linux mplayer should be installed and selected as system player]
 
 #### Amazon polly via cloud
 - **ru-RU_CLOUD_Female** -         Русский - Татьяна
@@ -187,7 +184,6 @@ Following values for engines are possible:
 - **(ru-RU_AP_Female)** -           Русский - Татьяна
 - **(ru-RU_AP_Male)** -             Русский - Максим
 - **(de-DE_AP_Female)** -           Deutsch - Marlene
-- **(de-DE_AP_Female_Vicki)** -     Deutsch - Vicki
 - **(de-DE_AP_Male)** -             Deutsch - Hans
 - **(en-US_AP_Female)** -           en-US - Female - Salli
 - **(en-US_AP_Male)** -             en-US - Male - Joey
@@ -238,21 +234,6 @@ Following values for engines are possible:
 - **(tr-TR_AP_Female)** -           tr-TR - Female - Filiz
 
 ## Changelog
-### 1.9.0 (2019-11-06)
-* (algar42) Output file extension is changed dynamically based on the engine selected
-
-### 1.8.2 (2019-07-11)
-* (bluefox) Web server URL will be updated if web server was updated
-
-### 1.8.1
-* Add Ukrainian Google Language
-
-### 1.8.0 (2018-12-04)
-* (bluefox) Priority for the text was added
-
-### 1.7.1 (2018-09-19)
-* (BuZZy1337) fixed error in Blockly-Block
-
 ### 1.7.0 (2018-06-08)
 * (bluefox) Ivona removed
 * (bluefox) Error was fixed by upload of file to FTP
@@ -403,7 +384,7 @@ Following values for engines are possible:
 
 The MIT License (MIT)
 
-Copyright (c) 2014-2019, bluefox <dogafox@gmail.com>
+Copyright (c) 2014-2017, bluefox<dogafox@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

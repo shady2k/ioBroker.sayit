@@ -3,14 +3,11 @@
 var sayitEngines = {
     "en":       {name: "Google - English",         engine: "google",  params: []},
     "de":       {name: "Google - Deutsch",         engine: "google",  params: []},
-    "pl":       {name: "Google - Polski",          engine: "google",  params: []},
-    "uk":       {name: "Google - Ukrainian",       engine: "google",  params: []},
     "ru":       {name: "Google - Русский",         engine: "google",  params: []},
     "it":       {name: "Google - Italiano",        engine: "google",  params: []},
     "es":       {name: "Google - Espaniol",        engine: "google",  params: []},
     "fr":       {name: "Google - Français",        engine: "google",  params: []},
-    "ru_YA":    {name: "Yandex - Русский",         engine: "yandex",  params: ['key', 'voice', 'emotion', 'ill', 'drunk', 'robot'], voice: ['jane', 'zahar'], emotion: ['none', 'good', 'neutral', 'evil', 'mixed']},
-    "ru_YA_CLOUD":   {name: "Yandex Cloud - Русский",   engine: "yandexCloud",  params: ['key', 'folderID', 'voice', 'emotion'], voice: ['alyss', 'oksana', 'jane', 'zahar'], emotion: [ 'good', 'neutral', 'evil']},
+    "ru_YA":    {name: "Yandex - Русский",         engine: "yandex",  params: ['key', 'voice', 'emotion', 'ill', 'drunk', 'robot'], voice: ['jane', 'zahar', 'alyss'], emotion: ['none', 'good', 'neutral', 'evil', 'mixed']},
 
     "ru-RU_CLOUD_Female":       {gender: "Female", engine: "cloud",   params: ['cloud'], language: "ru-RU",      ename: "Tatyana",    ssml: true, name: "Cloud - Русский - Татьяна"},
     "ru-RU_CLOUD_Male":         {gender: "Male",   engine: "cloud",   params: ['cloud'], language: "ru-RU",      ename: "Maxim",      ssml: true, name: "Cloud - Русский - Максим"},
@@ -74,7 +71,6 @@ var sayitEngines = {
     "ru-RU_AP_Female":          {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "ru-RU",      ename: "Tatyana",    ssml: true, name: "AWS Polly - Русский - Татьяна"},
     "ru-RU_AP_Male":            {gender: "Male",   engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "ru-RU",      ename: "Maxim",      ssml: true, name: "AWS Polly - Русский - Максим"},
     "de-DE_AP_Female":          {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "de-DE",      ename: "Marlene",    ssml: true, name: "AWS Polly - Deutsch - Marlene"},
-    "de-DE_AP_Female_Vicki":    {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "de-DE",      ename: "Vicki",      ssml: true, name: "AWS Polly - Deutsch - Vicki"},
     "de-DE_AP_Male":            {gender: "Male",   engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "de-DE",      ename: "Hans",       ssml: true, name: "AWS Polly - Deutsch - Hans"},
     "en-US_AP_Female":          {gender: "Female", engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "en-US",      ename: "Salli",      ssml: true, name: "AWS Polly - en-US - Female - Salli"},
     "en-US_AP_Male":            {gender: "Male",   engine: "polly",   params: ['accessKey', 'secretKey', 'region'], language: "en-US",      ename: "Joey",       ssml: true, name: "AWS Polly - en-US - Male - Joey"},
